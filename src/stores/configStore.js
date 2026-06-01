@@ -33,7 +33,7 @@ export const useConfigStore = defineStore('config', () => {
 
   // ── MikroTik options ──────────────────────────────────
   const bridgeName = ref('bridge1')
-  const mtservicePort = ref('')
+  const mtServicePort = ref('')
   const useHorizon = ref(true)
   const useFastFwd = ref(true)
 
@@ -47,7 +47,7 @@ export const useConfigStore = defineStore('config', () => {
     (model) => {
       selectedPorts.value = [...accessPorts.value]
       servicePort.value = ''
-      mtservicePort.value = ''
+      mtServicePort.value = ''
     },
     { immediate: true }
   )
@@ -220,7 +220,7 @@ export const useConfigStore = defineStore('config', () => {
   function generateMikroTik() {
     const cidr = maskToCIDR(mask.value)
     const bridge = bridgeName.value || 'bridge1'
-    const service = mtservicePort.value
+    const service = mtServicePort.value
     const lines = []
 
     lines.push('# ===== MikroTik RouterOS Configuration =====')
@@ -235,17 +235,16 @@ export const useConfigStore = defineStore('config', () => {
 
     lines.push('')
     lines.push('# Add access ports to bridge')
+    if (service) {
+      lines.push('# Service port — no horizon')
+      lines.push(`/interface bridge port add bridge=${bridge} interface=${service} horizon=none`)
+    }
     selectedPorts.value
       .filter((p) => p !== service)
       .forEach((p) => {
         const horizon = useHorizon.value ? 'horizon=1' : 'horizon=none'
         lines.push(`/interface bridge port add bridge=${bridge} interface=${p} ${horizon}`)
       })
-
-    if (service) {
-      lines.push('# Service port — no horizon')
-      lines.push(`/interface bridge port add bridge=${bridge} interface=${service} horizon=none`)
-    }
 
     lines.push('')
     lines.push('# IP and routing')
@@ -283,7 +282,7 @@ export const useConfigStore = defineStore('config', () => {
     servicePort,
     vlanId,
     bridgeName,
-    mtservicePort,
+    mtServicePort,
     useHorizon,
     useFastFwd,
     errors,
@@ -294,6 +293,7 @@ export const useConfigStore = defineStore('config', () => {
     clearAll,
     isSelected,
     isUplink,
-    generate
+    generate,
+    mtServicePort
   }
 })

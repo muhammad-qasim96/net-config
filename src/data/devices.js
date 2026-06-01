@@ -4,10 +4,7 @@ export const DEVICES = {
       id: 'c2960',
       name: 'Catalyst 2960',
       desc: '24x FastEthernet + 2x SFP uplink',
-      ports: [
-        ...Array.from({ length: 24 }, (_, i) => `Fa0/${i + 1}`),
-        'Gi0/1', 'Gi0/2'
-      ],
+      ports: [...Array.from({ length: 24 }, (_, i) => `Fa0/${i + 1}`), 'Gi0/1', 'Gi0/2'],
       uplinks: ['Gi0/1', 'Gi0/2'],
       mgmtIface: 'Vlan1'
     },
@@ -17,7 +14,10 @@ export const DEVICES = {
       desc: '24x GigabitEthernet + 4x SFP uplink',
       ports: [
         ...Array.from({ length: 24 }, (_, i) => `Gi1/0/${i + 1}`),
-        'Gi1/1/1', 'Gi1/1/2', 'Gi1/1/3', 'Gi1/1/4'
+        'Gi1/1/1',
+        'Gi1/1/2',
+        'Gi1/1/3',
+        'Gi1/1/4'
       ],
       uplinks: ['Gi1/1/1', 'Gi1/1/2', 'Gi1/1/3', 'Gi1/1/4'],
       mgmtIface: 'Vlan1'
@@ -28,7 +28,10 @@ export const DEVICES = {
       desc: '24x GigabitEthernet + 4x SFP',
       ports: [
         ...Array.from({ length: 24 }, (_, i) => `Gi0/${i + 1}`),
-        'Gi0/25', 'Gi0/26', 'Gi0/27', 'Gi0/28'
+        'Gi0/25',
+        'Gi0/26',
+        'Gi0/27',
+        'Gi0/28'
       ],
       uplinks: ['Gi0/25', 'Gi0/26', 'Gi0/27', 'Gi0/28'],
       mgmtIface: 'Vlan1'
@@ -39,7 +42,10 @@ export const DEVICES = {
       desc: '48x GigabitEthernet + 4x SFP',
       ports: [
         ...Array.from({ length: 48 }, (_, i) => `Gi1/0/${i + 1}`),
-        'Gi1/1/1', 'Gi1/1/2', 'Gi1/1/3', 'Gi1/1/4'
+        'Gi1/1/1',
+        'Gi1/1/2',
+        'Gi1/1/3',
+        'Gi1/1/4'
       ],
       uplinks: ['Gi1/1/1', 'Gi1/1/2', 'Gi1/1/3', 'Gi1/1/4'],
       mgmtIface: 'Vlan1'
@@ -50,7 +56,10 @@ export const DEVICES = {
       desc: '48x GigabitEthernet + 4x 10G uplink',
       ports: [
         ...Array.from({ length: 48 }, (_, i) => `Gi1/${i + 1}`),
-        'Te1/1', 'Te1/2', 'Te1/3', 'Te1/4'
+        'Te1/1',
+        'Te1/2',
+        'Te1/3',
+        'Te1/4'
       ],
       uplinks: ['Te1/1', 'Te1/2', 'Te1/3', 'Te1/4'],
       mgmtIface: 'Vlan1'
@@ -70,21 +79,21 @@ export const DEVICES = {
       name: 'RB260GS',
       desc: '5x GigabitEthernet',
       ports: ['ether1', 'ether2', 'ether3', 'ether4', 'ether5'],
-      uplinks: ['ether1']
+      uplinks: ['']
     },
     {
       id: 'rb750',
       name: 'hEX (RB750Gr3)',
       desc: '5x GigabitEthernet',
       ports: ['ether1', 'ether2', 'ether3', 'ether4', 'ether5'],
-      uplinks: ['ether1']
+      uplinks: ['']
     },
     {
       id: 'rb951',
       name: 'hAP (RB951Ui)',
       desc: '5x FastEthernet + wireless',
       ports: ['ether1', 'ether2', 'ether3', 'ether4', 'ether5'],
-      uplinks: ['ether1']
+      uplinks: ['']
     },
     {
       id: 'crs326',
@@ -92,9 +101,10 @@ export const DEVICES = {
       desc: '24x GigabitEthernet + 2x SFP+',
       ports: [
         ...Array.from({ length: 24 }, (_, i) => `ether${i + 1}`),
-        'sfp-sfpplus1', 'sfp-sfpplus2'
+        'sfp-sfpplus1',
+        'sfp-sfpplus2'
       ],
-      uplinks: ['sfp-sfpplus1', 'sfp-sfpplus2']
+      uplinks: ['']
     },
     {
       id: 'crs328',
@@ -102,19 +112,19 @@ export const DEVICES = {
       desc: '24x PoE GigabitEthernet + 4x SFP+',
       ports: [
         ...Array.from({ length: 24 }, (_, i) => `ether${i + 1}`),
-        'sfp-sfpplus1', 'sfp-sfpplus2', 'sfp-sfpplus3', 'sfp-sfpplus4'
+        'sfp-sfpplus1',
+        'sfp-sfpplus2',
+        'sfp-sfpplus3',
+        'sfp-sfpplus4'
       ],
-      uplinks: ['sfp-sfpplus1', 'sfp-sfpplus2', 'sfp-sfpplus3', 'sfp-sfpplus4']
+      uplinks: ['']
     },
     {
       id: 'rb4011',
       name: 'RB4011',
       desc: '10x GigabitEthernet + 1x SFP+',
-      ports: [
-        ...Array.from({ length: 10 }, (_, i) => `ether${i + 1}`),
-        'sfp-sfpplus1'
-      ],
-      uplinks: ['ether1', 'sfp-sfpplus1']
+      ports: [...Array.from({ length: 10 }, (_, i) => `ether${i + 1}`), 'sfp-sfpplus1'],
+      uplinks: ['']
     }
   ]
 }
