@@ -151,12 +151,21 @@ export const useConfigStore = defineStore('config', () => {
     if (password.value) lines.push(`enable secret ${password.value}`)
     lines.push('!')
 
+    if (vlan !== '1') {
+      lines.push('! Create VLAN')
+      lines.push(`vlan ${vlan}`)
+      lines.push(`  name VLAN_${vlan}`)
+      lines.push(`exit`)
+      lines.push('!')
+    }
+
     if (selectedPorts.value.length > 0) {
       const ranges = collapseRanges(selectedPorts.value)
       lines.push(`! Access ports — protected, VLAN ${vlan}`)
       ranges.forEach((r) => {
         lines.push(`interface range ${r}`)
         lines.push(`  switchport mode access`)
+        lines.push(`  switchport access vlan ${vlan}`)
         if (portsProtected.value) lines.push(`  switchport protected`)
         lines.push(`  no shutdown`)
         lines.push(`exit`)

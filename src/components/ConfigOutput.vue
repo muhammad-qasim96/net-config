@@ -92,7 +92,9 @@ function lineClass(line) {
   if (/^(interface|hostname|ip |\/ip |\/interface|\/system|\/user)/.test(line.trim()))
     return 'line-cmd'
   if (/^(line (vty|console))/.test(line.trim())) return 'line-cmd'
-  if (/^\s+(switchport|spanning-tree|no |description|password|login)/.test(line)) return 'line-sub'
+  if (/^vlan \d+/.test(line.trim())) return 'line-cmd'
+  if (/^\s+(switchport|spanning-tree|no |description|password|login|name )/.test(line))
+    return 'line-sub'
   return ''
 }
 
