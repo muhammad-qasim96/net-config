@@ -223,20 +223,20 @@ export const useConfigStore = defineStore('config', () => {
     const service = mtServicePort.value
     const lines = []
 
-    lines.push('# ===== MikroTik RouterOS Configuration =====')
+    // lines.push('# ===== MikroTik RouterOS Configuration =====')
     if (hostname.value) lines.push(`/system identity set name=${hostname.value}`)
     if (password.value) lines.push(`/user set [find name=admin] password="${password.value}"`)
 
     lines.push('')
-    lines.push('# Create bridge')
+    // lines.push('# Create bridge')
     lines.push(
       `/interface bridge add name=${bridge} fast-forward=${useFastFwd.value ? 'yes' : 'no'}`
     )
 
     lines.push('')
-    lines.push('# Add access ports to bridge')
+    // lines.push('# Add access ports to bridge')
     if (service) {
-      lines.push('# Service port — no horizon')
+      // lines.push('# Service port — no horizon')
       lines.push(`/interface bridge port add bridge=${bridge} interface=${service} horizon=none`)
     }
     selectedPorts.value
@@ -247,7 +247,7 @@ export const useConfigStore = defineStore('config', () => {
       })
 
     lines.push('')
-    lines.push('# IP and routing')
+    // lines.push('# IP and routing')
     lines.push(`/ip address add address=${ip.value}/${cidr} interface=${bridge}`)
     lines.push(`/ip route add gateway=${gateway.value}`)
     if (dns.value) lines.push(`/ip dns set servers=${dns.value} allow-remote-requests=yes`)
